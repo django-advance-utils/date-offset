@@ -12,7 +12,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/django-advance-utils/date-offset",
     include_package_data=True,
-    packages=['date-offset'],
+    packages=['date_offset'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
