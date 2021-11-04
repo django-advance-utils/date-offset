@@ -61,6 +61,11 @@ class DateOffsetTests(unittest.TestCase):
         expected_result = datetime(2014, 9, 11, 9, 30)
         self.assertEqual(expected_result, result)
 
+    def test_time_with_seconds(self):
+        result = self.d.get_offset("9:30:45t", self.fixed_date)
+        expected_result = datetime(2014, 9, 11, 9, 30, 45)
+        self.assertEqual(expected_result, result)
+
     def test_time2(self):
         result = self.d.get_offset("-1w 9:30t", self.fixed_date)
         expected_result = datetime(2014, 9, 4, 9, 30)
