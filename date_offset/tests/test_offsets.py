@@ -1,7 +1,7 @@
 import unittest
 from datetime import date, datetime, timedelta
 
-from .date_offset import DateOffset
+from date_offset.date_offset import DateOffset
 
 
 class DateOffsetTests(unittest.TestCase):
