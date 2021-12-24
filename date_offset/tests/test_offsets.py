@@ -42,13 +42,16 @@ class DateOffsetTests(unittest.TestCase):
     def test_month_and_fixed(self):
         result = self.d.get_offset("1m", self.fixed_date)
         expected_result = date(2014, 10, 11)
-
         self.assertEqual(expected_result, result)
 
     def test_one_month_one_day(self):
         result = self.d.get_offset("1m1d", self.fixed_date)
         expected_result = date(2014, 10, 12)
+        self.assertEqual(expected_result, result)
 
+    def test_year_and_fixed(self):
+        result = self.d.get_offset("1y", self.fixed_date)
+        expected_result = date(2015, 9, 11)
         self.assertEqual(expected_result, result)
 
     def test_last_monday(self):

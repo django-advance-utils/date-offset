@@ -41,7 +41,9 @@ class DateOffset:
             elif c == "m":  # offset by months
                 start_date_time += MonthDelta(int(current_string))
                 current_string = ""
-
+            elif c == "y":  # offset by years
+                start_date_time += MonthDelta(int(current_string) * 12)
+                current_string = ""
             elif c == '~':  # not weekend
                 weekday = start_date_time.weekday()
                 if weekday >= 5:
