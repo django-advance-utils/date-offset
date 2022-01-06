@@ -27,6 +27,7 @@ Keyword
 * d offset by days (1d)
 * w offset by weeks (1w)
 * m offset by months (1m)
+* y offset by years (1y)
 * ~ not weekend
 * t time (10t = 10hr. 10:15t = 10hr 15mins. 10:15:45t = 10hr 15mins 45secs)
     
