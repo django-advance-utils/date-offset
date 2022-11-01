@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="date-offset",
-    version="0.0.2",
+    version="0.0.3",
     author="Tom Turner",
     description="An library to allow offset of dates by a string",
     long_description=long_description,

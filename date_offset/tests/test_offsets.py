@@ -8,7 +8,7 @@ class DateOffsetTests(unittest.TestCase):
     def setUp(self):
         self.d = DateOffset()
         self.today = date.today()
-        self.fixed_date = datetime(2014, 9, 11, 9, 0, 0)
+        self.fixed_date_time = datetime(2014, 9, 11, 9, 0, 0)
 
     def test_today(self):
         result = self.d.get_offset("0")
@@ -35,42 +35,42 @@ class DateOffsetTests(unittest.TestCase):
         self.assertEqual(expected_result, result)
 
     def test_next_week(self):
-        result = self.d.get_offset("1w", self.fixed_date)
+        result = self.d.get_offset("1w", self.fixed_date_time)
         expected_result = date(2014, 9, 18)
         self.assertEqual(expected_result, result)
 
     def test_month_and_fixed(self):
-        result = self.d.get_offset("1m", self.fixed_date)
+        result = self.d.get_offset("1m", self.fixed_date_time)
         expected_result = date(2014, 10, 11)
         self.assertEqual(expected_result, result)
 
     def test_one_month_one_day(self):
-        result = self.d.get_offset("1m1d", self.fixed_date)
+        result = self.d.get_offset("1m1d", self.fixed_date_time)
         expected_result = date(2014, 10, 12)
         self.assertEqual(expected_result, result)
 
     def test_year_and_fixed(self):
-        result = self.d.get_offset("1y", self.fixed_date)
+        result = self.d.get_offset("1y", self.fixed_date_time)
         expected_result = date(2015, 9, 11)
         self.assertEqual(expected_result, result)
 
     def test_last_monday(self):
-        result = self.d.get_offset("#", self.fixed_date)
+        result = self.d.get_offset("#", self.fixed_date_time)
         expected_result = date(2014, 9, 8)
         self.assertEqual(expected_result, result)
 
     def test_time(self):
-        result = self.d.get_offset("9:30t", self.fixed_date)
+        result = self.d.get_offset("9:30t", self.fixed_date_time)
         expected_result = datetime(2014, 9, 11, 9, 30)
         self.assertEqual(expected_result, result)
 
     def test_time_with_seconds(self):
-        result = self.d.get_offset("9:30:45t", self.fixed_date)
+        result = self.d.get_offset("9:30:45t", self.fixed_date_time)
         expected_result = datetime(2014, 9, 11, 9, 30, 45)
         self.assertEqual(expected_result, result)
 
     def test_time2(self):
-        result = self.d.get_offset("-1w 9:30t", self.fixed_date)
+        result = self.d.get_offset("-1w 9:30t", self.fixed_date_time)
         expected_result = datetime(2014, 9, 4, 9, 30)
         self.assertEqual(expected_result, result)
 
@@ -125,4 +125,19 @@ class DateOffsetTests(unittest.TestCase):
     def test_end_of_week(self):
         result = self.d.get_offset("*", date(2020, 3, 10))
         expected_result = date(2020, 3, 15)
+        self.assertEqual(expected_result, result)
+
+    def test_seconds(self):
+        result = self.d.get_offset('3600s', self.fixed_date_time, include_time=True)
+        expected_result = datetime(2014, 9, 11, 10, 0, 0)
+        self.assertEqual(expected_result, result)
+
+    def test_minutes(self):
+        result = self.d.get_offset('60i', self.fixed_date_time, include_time=True)
+        expected_result = datetime(2014, 9, 11, 10, 0, 0)
+        self.assertEqual(expected_result, result)
+
+    def test_hours(self):
+        result = self.d.get_offset('1h', self.fixed_date_time, include_time=True)
+        expected_result = datetime(2014, 9, 11, 10, 0, 0)
         self.assertEqual(expected_result, result)

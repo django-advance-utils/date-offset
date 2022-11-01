@@ -44,6 +44,16 @@ class DateOffset:
             elif c == "y":  # offset by years
                 start_date_time += MonthDelta(int(current_string) * 12)
                 current_string = ""
+            elif c == 's':  # offset by seconds
+                start_date_time += timedelta(seconds=int(current_string))
+                current_string = ""
+            elif c == 'i':  # offset by minutes
+                start_date_time += timedelta(minutes=int(current_string))
+                current_string = ""
+            elif c == 'h':  # offset by hours
+                start_date_time += timedelta(hours=int(current_string))
+                current_string = ""
+
             elif c == '~':  # not weekend
                 weekday = start_date_time.weekday()
                 if weekday >= 5:
@@ -65,6 +75,7 @@ class DateOffset:
                     seconds = int(data[2])
                 start_date_time = start_date_time.replace(hour=hours, minute=minutes, second=seconds, microsecond=0)
                 include_time = True
+
             elif c == " ":
                 continue
             else:
